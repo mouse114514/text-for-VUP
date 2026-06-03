@@ -1,0 +1,50 @@
+{
+  "name": "角色",
+  "font_name": "Consolas",
+  "font_size": 64,
+  "line_height": 1.3,
+  "window_width": 800,
+  "window_height": 600,
+  "fullscreen": true,
+  "x_offset": 0,
+  "y_offset": 100,
+  "bg_color": [0, 0, 0],
+  "text_color": [255, 255, 255],
+  "layout": [
+    "=P",
+    "oo"
+  ],
+  "roles": [
+    {
+      "name": "眼睛",
+      "type": "eye",
+      "cells": [[0, 0]],
+      "side": "",
+      "state_closed": "x ",
+      "state_open": "= ",
+      "font_scale": 1.5
+    },
+    {
+      "name": "嘴巴",
+      "type": "mouth",
+      "cells": [[0, 1]],
+      "side": "",
+      "state_closed": "P",
+      "state_open": "O",
+      "bind_to": "眼睛",
+      "font_scale": 1.5
+    },
+    {
+      "name": "左手",
+      "type": "hand",
+      "cells": [[1, 0]],
+      "side": "left"
+    },
+    {
+      "name": "右手",
+      "type": "hand",
+      "cells": [[1, 1]],
+      "side": "right"
+    }
+  ]
+}
