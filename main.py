@@ -11,7 +11,7 @@ from renderer import Renderer
 
 
 def main():
-    profile_path = sys.argv[1] if len(sys.argv) > 1 else "profiles/default.json"
+    profile_path = sys.argv[1] if len(sys.argv) > 1 else "profiles/vup.json"
     profile = Profile(profile_path)
 
     try:

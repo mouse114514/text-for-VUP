@@ -12,6 +12,7 @@ class RoleDef:
         self.side = side
         self.bind_to = ""
         self.font_scale = 1.0
+        self.states = {}
 
     def to_dict(self):
         d = {"name": self.name, "type": self.type, "cells": self.cells, "side": self.side}
@@ -23,6 +24,8 @@ class RoleDef:
             d["bind_to"] = self.bind_to
         if self.font_scale != 1.0:
             d["font_scale"] = self.font_scale
+        if self.states:
+            d["states"] = self.states
         return d
 
     @classmethod
@@ -36,9 +39,19 @@ class RoleDef:
         )
         obj.bind_to = d.get("bind_to", "")
         obj.font_scale = d.get("font_scale", 1.0)
+        obj.states = {float(k): v for k, v in d.get("states", {}).items()}
         return obj
 
     def resolve_char(self, openness):
+        if self.states:
+            best_k = -1
+            best_v = ""
+            for k, v in self.states.items():
+                if k <= openness and k > best_k:
+                    best_k = k
+                    best_v = v
+            if best_v:
+                return best_v
         if self.type == "eye":
             if openness < 0.15:
                 return self.state_closed or self.state_open

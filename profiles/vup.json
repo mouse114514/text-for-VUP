@@ -22,7 +22,8 @@
       "side": "",
       "state_closed": "x ",
       "state_open": "= ",
-      "font_scale": 1.5
+      "font_scale": 1.5,
+      "states": {"0": "X", "0.2": "x", "0.5": ":", "1": "="}
     },
     {
       "name": "嘴巴",
@@ -32,7 +33,8 @@
       "state_closed": "P",
       "state_open": "O",
       "bind_to": "眼睛",
-      "font_scale": 1.5
+      "font_scale": 1.5,
+      "states": {"0": "P", "0.2": "p", "0.6": "o", "1": "O"}
     },
     {
       "name": "左手",

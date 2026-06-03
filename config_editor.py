@@ -113,6 +113,12 @@ class ConfigEditor:
         ttk.Entry(edit_box, textvariable=self.font_scale_var, width=12).grid(row=row, column=1, sticky="w", padx=5)
         row += 1
 
+        ttk.Label(edit_box, text="分段状态(阈值=字符):").grid(row=row, column=0, sticky="w")
+        self.states_var = tk.StringVar()
+        self.states_entry = ttk.Entry(edit_box, textvariable=self.states_var, width=30)
+        self.states_entry.grid(row=row, column=1, sticky="w", padx=5)
+        row += 1
+
         ttk.Label(edit_box, text="覆盖的格子:").grid(row=row, column=0, sticky="w")
         self.cells_var = tk.StringVar()
         ttk.Entry(edit_box, textvariable=self.cells_var, width=30).grid(row=row, column=1, sticky="w", padx=5)
@@ -180,6 +186,7 @@ class ConfigEditor:
         self.cells_var.set(" ".join(f"{r},{c}" for r, c in role.cells))
         self.state_closed_var.set(role.state_closed)
         self.state_open_var.set(role.state_open)
+        self.states_var.set(" ".join(f"{k}={v}" for k, v in sorted(role.states.items())))
         self._on_type_change()
         self._update_preview()
 
@@ -229,6 +236,16 @@ class ConfigEditor:
         if role.type in ("eye", "mouth"):
             role.state_closed = self.state_closed_var.get()
             role.state_open = self.state_open_var.get()
+        raw = self.states_var.get().strip()
+        role.states = {}
+        if raw:
+            for pair in raw.split():
+                if "=" in pair:
+                    k, v = pair.split("=", 1)
+                    try:
+                        role.states[float(k)] = v
+                    except ValueError:
+                        pass
         self._refresh_role_list()
         self._update_preview()
 
