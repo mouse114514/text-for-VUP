@@ -6,11 +6,7 @@
 
 **Text for VUP** is a lightweight V‑tuber puppet tool. You define your character with multiline ASCII art, assign cells to face/eye/mouth/hand roles, and each part moves independently via webcam face and hand tracking (MediaPipe).
 
-```
-  O   O
-    .
-   ───        ← your character, driven by your face
-```
+![demo](screenshots/demo.png)
 
 ## Features
 
@@ -28,8 +24,8 @@
 ## Quick Start
 
 ```bash
-# 1. Install dependencies
-pip install opencv-python mediapipe numpy pillow
+# 1. Install
+pip install git+https://github.com/mouse114514/text-for-VUP.git
 
 # 2. Download MediaPipe models into models/
 #    face_landmarker_v2.task  +  hand_landmarker.task
